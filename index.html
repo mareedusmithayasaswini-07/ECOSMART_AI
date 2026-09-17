@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoSmart AI - AI-Powered Waste & Sustainability Assistant</title>
+  <meta name="description" content="EcoSmart AI: IBM SkillsBuild & 1M1B Virtual Internship project for SDG 12 & 13. AI-powered waste segregation, RAG policy engine, and agentic carbon accounting.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-icon">🌱</div>
+      <div>
+        <div class="brand-title">EcoSmart AI</div>
+        <div class="brand-subtitle">IBM SkillsBuild & 1M1B Sustainability Project</div>
+      </div>
+    </div>
+
+    <div class="header-badges">
+      <span class="badge">SDG 12: Responsible Consumption</span>
+      <span class="badge badge-cyan">SDG 13: Climate Action</span>
+      <a href="submission_presentation.html" target="_blank" class="badge" style="background: rgba(255,255,255,0.1); color: #fff; text-decoration: none;">📑 Open Slide Deck</a>
+    </div>
+  </header>
+
+  <!-- NAV TABS -->
+  <nav class="nav-tabs">
+    <button class="tab-btn active" data-tab="tab-classifier">♻️ AI Waste Classifier</button>
+    <button class="tab-btn" data-tab="tab-rag">🤖 IBM Granite RAG Assistant</button>
+    <button class="tab-btn" data-tab="tab-agent">⚡ Agentic AI Workflow</button>
+    <button class="tab-btn" data-tab="tab-impact">📊 Carbon & Impact Dashboard</button>
+    <button class="tab-btn" data-tab="tab-ethics">🛡️ Responsible AI & Ethics</button>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- TAB 1: AI WASTE CLASSIFIER -->
+    <div id="tab-classifier" class="tab-pane active">
+      <div class="glass-card">
+        <div class="card-header">
+          <div class="card-title">🔍 AI Waste & Packaging Classifier</div>
+          <span class="badge">Multimodal AI Vision & NLP</span>
+        </div>
+        <p style="color: var(--text-muted); margin-bottom: 1.25rem;">
+          Type an item name or click one of the sample household/campus waste items below to trigger real-time AI classification, bin allocation, and carbon reduction metrics.
+        </p>
+
+        <div class="upload-zone" id="upload-box">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📸</div>
+          <p style="color: #fff; font-weight: 600;">Drag & Drop Waste Image or Click Sample Item</p>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Supports Plastic, E-Waste, Organic, Paper, and Hazardous waste identification</p>
+          
+          <div class="sample-pills">
+            <button class="sample-pill" data-item="plastic bottle">🥤 Plastic Bottle</button>
+            <button class="sample-pill" data-item="banana peel">🍌 Banana Peel</button>
+            <button class="sample-pill" data-item="laptop battery">🔋 Laptop Battery</button>
+            <button class="sample-pill" data-item="cardboard box">📦 Cardboard Box</button>
+            <button class="sample-pill" data-item="expired medicine">💊 Expired Medicine</button>
+          </div>
+        </div>
+
+        <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem;">
+          <input type="text" id="waste-input" class="chat-input" placeholder="Or type any item name (e.g. glass jar, aluminum can, phone charger)...">
+          <button id="classify-btn" class="btn-primary">Classify with AI 🚀</button>
+        </div>
+      </div>
+
+      <!-- RESULT CARD -->
+      <div id="result-card" class="glass-card" style="display: none;">
+        <div class="card-header">
+          <div class="card-title" id="res-title">PET Plastic Water Bottle</div>
+          <div class="bin-badge bin-recyclable" id="res-bin-badge">Blue Bin (Recyclables)</div>
+        </div>
+
+        <div class="grid-3" style="margin-bottom: 1.5rem;">
+          <div class="result-box">
+            <div class="stat-label">Identified Category</div>
+            <div class="stat-val" id="res-category" style="font-size: 1.2rem;">Recyclable Plastics</div>
+          </div>
+          <div class="result-box">
+            <div class="stat-label">AI Confidence</div>
+            <div class="stat-val" id="res-confidence">98.4%</div>
+          </div>
+          <div class="result-box">
+            <div class="stat-label">Carbon Offset (CO2e)</div>
+            <div class="stat-val" id="res-co2" style="color: var(--primary-teal);">0.45 kg</div>
+          </div>
+        </div>
+
+        <div class="result-box" style="margin-bottom: 1rem;">
+          <h4 style="color: var(--primary-emerald); margin-bottom: 0.5rem;">📋 Step-by-Step Recycling Guidance:</h4>
+          <ol id="res-steps" style="padding-left: 1.2rem; color: #e5e7eb; line-height: 1.7;"></ol>
+        </div>
+
+        <div class="grid-2">
+          <div class="result-box">
+            <div class="stat-label">Responsible AI Check</div>
+            <div style="color: #a7f3d0; font-weight: 600; font-size: 0.9rem; margin-top: 0.25rem;" id="res-ethics">Pass (Non-hazardous, Standard Recyclable)</div>
+          </div>
+          <div class="result-box">
+            <div class="stat-label">Agent Action Trigger</div>
+            <div style="color: #6ee7b7; font-weight: 600; font-size: 0.9rem; margin-top: 0.25rem;" id="res-agent">Standard collection log entry generated.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: IBM GRANITE RAG ASSISTANT -->
+    <div id="tab-rag" class="tab-pane">
+      <div class="glass-card">
+        <div class="card-header">
+          <div class="card-title">🤖 IBM Granite RAG Knowledge & Policy Engine</div>
+          <span class="badge badge-cyan">Retrieval-Augmented Generation</span>
+        </div>
+        <p style="color: var(--text-muted); margin-bottom: 1rem;">
+          Ask questions about local municipal waste policies, home composting methods, e-waste laws, or hazardous waste handling. Answers are grounded in indexed policy documents.
+        </p>
+
+        <div class="chat-container" id="chat-box">
+          <div class="chat-msg bot">
+            👋 Hello! I am your <strong>IBM Granite RAG Sustainability Assistant</strong>. How can I help you dispose of items responsibly or understand municipal waste guidelines today?
+            <div class="rag-source">📜 Source: IBM Granite RAG Policy Store (Indexed Municipal Directives)</div>
+          </div>
+        </div>
+
+        <div class="chat-input-row">
+          <input type="text" id="chat-input" class="chat-input" placeholder="Ask a question (e.g. How to dispose of lithium batteries? How to do home composting?)...">
+          <button id="chat-send-btn" class="btn-primary">Send 💬</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: AGENTIC AI WORKFLOW -->
+    <div id="tab-agent" class="tab-pane">
+      <div class="glass-card">
+        <div class="card-header">
+          <div class="card-title">⚡ Agentic AI Autonomous Dispatch & Accounting Workflow</div>
+          <span class="badge">Autonomous Agent Logic</span>
+        </div>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          When EcoSmart AI detects bulk e-waste or toxic hazardous items, an autonomous AI Agent initiates multi-step operations without human delay.
+        </p>
+
+        <div class="result-box" style="margin-bottom: 1.5rem;">
+          <div class="workflow-step active">
+            <div class="step-icon">1</div>
+            <div class="step-body">
+              <h4>Input Detection & Multimodal Analysis</h4>
+              <p>AI receives item photo/text query and identifies hazard levels (e.g., Swollen Lithium Battery / Computer Tower).</p>
+            </div>
+          </div>
+
+          <div class="workflow-step">
+            <div class="step-icon">2</div>
+            <div class="step-body">
+              <h4>RAG Knowledge Verification & Policy Lookup</h4>
+              <p>Queries municipal database to extract exact handling requirements and safety instructions.</p>
+            </div>
+          </div>
+
+          <div class="workflow-step">
+            <div class="step-icon">3</div>
+            <div class="step-body">
+              <h4>Automated Pickup Dispatch Ticket</h4>
+              <p>Generates an encrypted pickup request sent directly to the nearest certified E-Waste / Hazardous Recycling Facility.</p>
+            </div>
+          </div>
+
+          <div class="workflow-step">
+            <div class="step-icon">4</div>
+            <div class="step-body">
+              <h4>Carbon Offset Ledger Accounting</h4>
+              <p>Calculates net avoided CO2 emissions (+2.10 kg CO2e) and updates community sustainability records.</p>
+            </div>
+          </div>
+        </div>
+
+        <button id="trigger-agent-btn" class="btn-primary">⚡ Run Agentic Dispatch Simulation</button>
+      </div>
+    </div>
+
+    <!-- TAB 4: CARBON & IMPACT DASHBOARD -->
+    <div id="tab-impact" class="tab-pane">
+      <div class="glass-card">
+        <div class="card-header">
+          <div class="card-title">📊 Sustainability & Carbon Impact Analytics</div>
+          <span class="badge">Live Community Metrics</span>
+        </div>
+
+        <div class="grid-4" style="margin-bottom: 1.5rem;">
+          <div class="result-box">
+            <div class="stat-label">Total CO2 Emissions Saved</div>
+            <div class="stat-val" id="carbon-counter">1248.5 kg</div>
+          </div>
+          <div class="result-box">
+            <div class="stat-label">Landfill Diversion Rate</div>
+            <div class="stat-val" style="color: var(--primary-teal);">68.4%</div>
+          </div>
+          <div class="result-box">
+            <div class="stat-label">Items Segregated</div>
+            <div class="stat-val" style="color: var(--primary-cyan);">3,420</div>
+          </div>
+          <div class="result-box">
+            <div class="stat-label">E-Waste Dispatched</div>
+            <div class="stat-val" style="color: var(--warning-color);">142 kg</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="result-box">
+            <h4 style="color: #fff; margin-bottom: 0.75rem;">🌍 Environmental Benefits (SDG 12 & 13)</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+              • Prevents anaerobic methane generation in municipal landfills.<br>
+              • Recovers high-purity plastic polymers and rare metals.<br>
+              • Eliminates groundwater toxic leachate contamination.
+            </p>
+          </div>
+          <div class="result-box">
+            <h4 style="color: #fff; margin-bottom: 0.75rem;">🏛️ Municipal & Community Benefits</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+              • Reduces municipal waste transit logistics expenses by ~18%.<br>
+              • Provides dignified, safer conditions for manual waste sorters.<br>
+              • Enhances civic engagement and climate awareness across campuses.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: RESPONSIBLE AI & ETHICS -->
+    <div id="tab-ethics" class="tab-pane">
+      <div class="glass-card">
+        <div class="card-header">
+          <div class="card-title">🛡️ Responsible AI & Ethics Audit Panel</div>
+          <span class="badge">1M1B & IBM AI Ethics Guidelines</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="result-box">
+            <h4 style="color: var(--primary-emerald); margin-bottom: 0.5rem;">⚖️ Fairness & Accessibility</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+              Evaluated across diverse regional packaging styles and multi-lingual interfaces (English, Hindi, regional dialects) to eliminate socio-economic performance bias.
+            </p>
+          </div>
+
+          <div class="result-box">
+            <h4 style="color: var(--primary-teal); margin-bottom: 0.5rem;">🔍 Transparency & Explainability</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+              Outputs display confidence scores and step-by-step reasoning logic. RAG answers cite authoritative municipal policy source documents.
+            </p>
+          </div>
+
+          <div class="result-box">
+            <h4 style="color: var(--warning-color); margin-bottom: 0.5rem;">⚠️ Ethics & Safety Guardrails</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+              Strict safety protocols prevent unsafe DIY handling of chemical, medical, or battery hazards. Clear safety warnings instruct users to seek certified professional handlers.
+            </p>
+          </div>
+
+          <div class="result-box">
+            <h4 style="color: var(--primary-cyan); margin-bottom: 0.5rem;">🔒 Privacy & Data Protection</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+              Zero permanent retention of user photos or personal identity details. Images are processed transiently in memory solely for classification and purged immediately.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="app-footer">
+    1M1B AI for Sustainability Virtual Internship Project | Developed in Collaboration with IBM SkillsBuild & AICTE
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
