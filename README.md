@@ -7,9 +7,9 @@
 ## 1. Project Title & Metadata
 
 * **Project Title:** EcoSmart AI: AI-Powered Municipal Waste Segregation & Carbon Footprint Optimization Assistant
-* **Student Name:** [Your Full Name Here]
-* **College / Institution Name:** [Your College / University Name Here]
-* **Roll No / Registration ID:** [Your Student ID / Reg No Here]
+* **Student Name:** MAREEDU SMITHA YASASWINI
+* **College / Institution Name:** SIR CR REDDY COLLEGE OF ENGINEERING
+* **Roll No / Registration ID:** 25B85A0519
 * **Internship Batch:** 1M1B AI for Sustainability Virtual Internship (2026)
 
 ---
